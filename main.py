@@ -35,7 +35,7 @@ def main():
     replot_dir = dirs["replots"]
 
 
-    qubit_list = range(5, 6) # 5, 6, 7, 8
+    qubit_list = list(range(5, 11)) # qubit numbers to simulate
     models = ["Q-LINK(Fixed)", "Q-LINK(Adaptive)", "Vallina"]
     n_repeats = 5
     num_iterations = 1500

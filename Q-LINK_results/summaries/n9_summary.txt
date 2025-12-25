@@ -1,0 +1,4 @@
+Results for 9 qubits experiment
+Model Q-LINK(Fixed): KL=0.000000, Final Loss=0.000987, Avg Stopping Iteration=234, Gradient Variance=2.3296911422221456e-06
+Model Q-LINK(Adaptive): KL=0.000000, Final Loss=0.000992, Avg Stopping Iteration=587, Gradient Variance=1.3937188668933231e-05
+Model Vallina: KL=0.000002, Final Loss=0.018986, Avg Stopping Iteration=1500, Gradient Variance=2.0211777496115246e-07

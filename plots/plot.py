@@ -185,7 +185,7 @@ def plot_iter_vs_qubits_scatter(qubits_list, iteration_mean, base_dir):
     plt.figure(figsize=(6.5, 4.5))
 
     for model, y_vals in iteration_mean.items():
-        x_vals = list(qubits_list)
+        x_vals = qubits_list
 
         # line
         plt.plot(x_vals, y_vals, color=color_map[model]["line"], linewidth=2, alpha=0.9, label=model)
@@ -195,7 +195,7 @@ def plot_iter_vs_qubits_scatter(qubits_list, iteration_mean, base_dir):
 
         # annotate each point
         for x, y in zip(x_vals, y_vals):
-            plt.annotate(f"{y}", xy=(x, y),fontsize=10, ha="center", va="bottom", textcoords="offset points", xytext=(0, 4), color=color_map[model]["line"], fontweight="bold")
+            plt.annotate(f"{y}", xy=(x, y),fontsize=10, ha="center", va="bottom", textcoords="offset points", xytext=(0, 5), color=color_map[model]["line"], fontweight="bold")
 
     plt.xticks(x_vals)
     plt.xlabel("qubits", fontsize=12)

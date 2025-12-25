@@ -105,7 +105,7 @@ def replot_avgiter(json_path):
             plt.scatter(qubits, y_vals, s=80, zorder=3)
 
         for x, y in zip(qubits, y_vals):
-            plt.annotate(str(y), (x, y), xytext=(0, 4),
+            plt.annotate(str(y), (x, y), xytext=(0, 5),
                          textcoords="offset points", ha="center", fontsize=10)
 
     plt.xlabel("qubits")
