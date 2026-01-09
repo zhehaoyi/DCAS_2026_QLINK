@@ -7,7 +7,7 @@ Q-LINK enables layerwise residual information flow without circuit splitting or 
 The repository includes:
 - **Q-LINK (Fixed)**: residual coupling gates are fixed.
 - **Q-LINK (Adaptive)**: residual coupling gates are trainable.
-- **Vallina**: variational quantum circuit as a baseline (no messenger residual module).
+- **Vanilla**: variational quantum circuit as a baseline (no messenger residual module).
 
 The flowchatr as follow:
 
