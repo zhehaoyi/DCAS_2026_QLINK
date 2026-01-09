@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 # the base directory for results
-BASE_DIR = "residual_network/residual_network_results"
+BASE_DIR = "Q-LINK\Q-LINK_results"
 DATA_DIR = os.path.join(BASE_DIR, "data")
 REPLOT_DIR = os.path.join(BASE_DIR, "replots")
 
@@ -31,7 +31,7 @@ plt.rcParams.update({
 color_map = {
     "Q-LINK(Fixed)":     {"line": "#FB8500", "marker": "#E85D04"},
     "Q-LINK(Adaptive)":  {"line": "#52B788", "marker": "#2D6A4F"},
-    "Vallina":           {"line": "#2E86AB", "marker": "#A23B72"},
+    "Vanilla":           {"line": "#2E86AB", "marker": "#A23B72"},
 }
 
 
@@ -39,6 +39,8 @@ color_map = {
 def fix_model_name(name):
     if isinstance(name, str) and name.strip() == "Q-LINK(Adptive)":
         return "Q-LINK(Adaptive)"
+    if isinstance(name, str) and name.strip() == "Vallina":
+        return "Vanilla"
     return name
 
 
@@ -63,11 +65,12 @@ def replot_loss_comparison(json_path):
 
         x = np.arange(len(avg_loss))
         if model in color_map:
-            plt.plot(x, avg_loss, linewidth=2, color=color_map[model]["line"], label=model)
+            line_color = color_map[model]["line"]
+            plt.plot(x, avg_loss, linewidth=2, color=line_color, label=model)
         else:
             plt.plot(x, avg_loss, linewidth=2, label=model)
 
-        plt.fill_between(x, avg_loss - std_loss, avg_loss + std_loss, alpha=0.1)
+        plt.fill_between(x, avg_loss - std_loss, avg_loss + std_loss, color=line_color, alpha=0.1)
 
     plt.xlabel("iteration")
     plt.ylabel("loss")
@@ -75,7 +78,7 @@ def replot_loss_comparison(json_path):
     plt.grid(True, linestyle="--", alpha=0.6)
 
     # add "replots_" prefix to distinguish from original plots
-    out_name = f"replots_n{n}_loss_comparison.pdf"
+    out_name = f"n{n - 1}_loss_comparison.pdf"
     out_path = os.path.join(REPLOT_DIR, safe_filename(out_name))
     plt.savefig(out_path, bbox_inches="tight")
     plt.close()
@@ -114,7 +117,7 @@ def replot_avgiter(json_path):
     plt.legend(frameon=False)
     plt.tight_layout()
 
-    out_path = os.path.join(REPLOT_DIR, "replots_avgiter_vs_qubits.pdf")
+    out_path = os.path.join(REPLOT_DIR, "avgiter_vs_qubits.pdf")
     plt.savefig(out_path, dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -142,10 +145,17 @@ def replot_landscape(npz_path):
     ax.set_ylabel("direction 2")
     ax.set_zlabel("loss")
 
-    fig.colorbar(surf, ax=ax, shrink=0.5, aspect=12)
+    zmin = loss_landscape.min()
+    zmax = loss_landscape.max()
+    ax.set_zlim(zmin, zmax * 1.1)
+    ax.zaxis.set_label_coords(-0.08, 0.5)
 
-    plot_n = num_qubits if model == "Vallina" else (num_qubits - 1)
-    out_name = f"replots_n{plot_n}_{model}_landscape.pdf"
+    ax.view_init(elev=30, azim=45)
+    fig.colorbar(surf, ax=ax, shrink=0.5, aspect=12)    
+    ax.view_init(elev=35, azim=45)
+
+    plot_n = num_qubits if model == "Vanilla" else (num_qubits - 1)
+    out_name = f"n{plot_n}_{model}_landscape.pdf"
     out_path = os.path.join(REPLOT_DIR, safe_filename(out_name))
 
     plt.savefig(out_path, bbox_inches="tight")
@@ -154,7 +164,7 @@ def replot_landscape(npz_path):
 
 
 # scan the data directory and replot all
-def scan_and_replot_all(default_std):
+def scan_and_replot_all():
     if not os.path.isdir(DATA_DIR):
         raise RuntimeError(f"DATA_DIR not found: {DATA_DIR}")
     if not os.path.isdir(REPLOT_DIR):
@@ -166,7 +176,7 @@ def scan_and_replot_all(default_std):
         path = os.path.join(DATA_DIR, f)
 
         if f.endswith("_loss_comparison_data.json"):
-            replot_loss_comparison(path, default_std)
+            replot_loss_comparison(path)
 
         elif f == "avg_stopping_iteration_vs_qubits.json":
             replot_avgiter(path)
