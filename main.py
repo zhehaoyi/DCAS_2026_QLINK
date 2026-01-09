@@ -36,7 +36,7 @@ def main():
 
 
     qubit_list = list(range(5, 11)) # qubit numbers to simulate
-    models = ["Q-LINK(Fixed)", "Q-LINK(Adaptive)", "Vallina"]
+    models = ["Q-LINK(Fixed)", "Q-LINK(Adaptive)", "Vanilla"]
     n_repeats = 5
     num_iterations = 1500
     n_loss_stats = {}
@@ -48,7 +48,7 @@ def main():
         with open(summary_file, "w") as f: f.write(f"Results for {n} qubits experiment\n")
 
         for model in models:
-            all_qubits = n if model != "Vallina" else n - 1 # all qubits
+            all_qubits = n if model != "Vanilla" else n - 1 # all qubits
             data_qubits = n - 1 # data qubits
 
             depth = circuit_depth(data_qubits)

@@ -26,8 +26,8 @@ plt.rcParams.update({
 
 color_map = {
         "Q-LINK(Fixed)":     {"line": "#FB8500", "marker": "#E85D04"},
-        "Q-LINK(Adptive)":   {"line": "#52B788", "marker": "#2D6A4F"},
-        "Vallina":  {"line": "#2E86AB", "marker": "#A23B72"},
+        "Q-LINK(Adaptive)":   {"line": "#52B788", "marker": "#2D6A4F"},
+        "Vanilla":  {"line": "#2E86AB", "marker": "#A23B72"},
 }
 
 def plot_loss_comparison(num_qubits, results_dict, save_dir):
@@ -129,7 +129,7 @@ def plot_loss_landscape(num_qubits, depth, input_state, final_u, final_res, mode
     loss_landscape[:, :] = Z.detach().cpu().numpy()
 
     # save the landscape data for future use, may be we need to re-plot later
-    n_for_name = num_qubits - 1 if model != "Vallina" else num_qubits
+    n_for_name = num_qubits - 1 if model != "Vanilla" else num_qubits
     npz_path = os.path.join(data_dir, f"n{n_for_name}_{model}_landscape_data.npz")
     np.savez_compressed(
         npz_path,
@@ -167,7 +167,7 @@ def plot_loss_landscape(num_qubits, depth, input_state, final_u, final_res, mode
     fig.colorbar(surf, ax=ax, shrink=0.5, aspect=12)    
     ax.view_init(elev=35, azim=45)
 
-    if model != "Vallina":
+    if model != "Vanilla":
         num_qubits = num_qubits - 1 # to match the plot title
     save_path = os.path.join(landscape_dir, f"n{num_qubits}_{model}_landscape.pdf")
     plt.savefig(save_path, bbox_inches='tight')
