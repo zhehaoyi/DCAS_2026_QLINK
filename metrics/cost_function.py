@@ -2,7 +2,7 @@ import tensorcircuit as tc
 
 def cost_function(probs, num_qubits, model):
     s = 0
-    if model != "Vallina":
+    if model != "Vanilla":
         num_qubits = num_qubits - 1  # exclude the control qubit
     # iterate over n-1 quantum bit (excluding the control qubit)
     for i in range(num_qubits):

@@ -7,7 +7,7 @@ def create_random_state(num_qubits, model):
     Docstring for create_random_state
     
     :param num_qubits: number of qubits
-    :param model: model type ("Q-LINK(Fixed)", "Q-LINK(Adaptive)", or "Vallina")
+    :param model: model type ("Q-LINK(Fixed)", "Q-LINK(Adaptive)", or "Vanilla")
     :return: random quantum statevector
     """
     # get a random input quantum state

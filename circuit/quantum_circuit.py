@@ -15,15 +15,15 @@ def quantum_res_circuit(num_qubits, circuit_depth, u_params, res_params, input_s
     """
 
     qc = tc.Circuit(num_qubits, inputs = input_state)
-    if model == "Vallina":
+    if model == "Vanilla":
         data_idx = num_qubits  # idx of data qubits n
     else:
         data_idx = num_qubits - 1 # idx of data qubits (n - 1)
         control_idx = num_qubits - 1  # idx of control qubits the last qubit
 
 
-    # if model is not Vallina, add residual connections
-    if model != "Vallina":
+    # if model is not Vanilla, add residual connections
+    if model != "Vanilla":
         # first H on the control qubit to ensure the entanglement
         qc.h(control_idx)
 
@@ -46,7 +46,7 @@ def quantum_res_circuit(num_qubits, circuit_depth, u_params, res_params, input_s
         for i in range(data_idx - 1):
             qc.cz(i, i + 1)
         
-        if model != "Vallina":
+        if model != "Vanilla":
             # add the residual back to data qubits through control not gate
             for i in range(data_idx):
                 qc.cnot(control_idx, i)

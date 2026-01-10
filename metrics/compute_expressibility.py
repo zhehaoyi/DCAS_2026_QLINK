@@ -13,7 +13,7 @@ class ComputeExpress:
         self.model = model
         
         # adjust num_qubits for no residual connection case
-        self.data_n = num_qubits - 1 if model != "Vallina" else num_qubits
+        self.data_n = num_qubits - 1 if model != "Vanilla" else num_qubits
         self.u_size = self.depth * self.data_n * 3
         self.res_size = (self.depth + 1) * self.data_n
 
