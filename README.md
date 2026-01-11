@@ -9,9 +9,10 @@ The repository includes:
 - **Q-LINK (Adaptive)**: residual coupling gates are trainable.
 - **Vanilla**: variational quantum circuit as a baseline (no messenger residual module).
 
-The flowchatr as follow:
+The flowchart is as follows:
 
-[![Q-LINK Architecture](image/QLINK.png)](image/QLINK.pdf)
+https://github.com/zhehaoyi/DCAS_2026_QLINK/blob/main/qlink_flowchat/QLINK.pdf
+
 ## Code Architecture
 ```bash
 .
@@ -60,10 +61,10 @@ Metrics collected:
 
 ## Running the Code
 ```bash
-# first to install all the requirements
-pip install requirements.txt
+# first to install all the requirements in your Python virtual environment.
+pip install -r requirements.txt
 
-# then 
+# To perform the analysis:
 python main.py
 ```
 This will:
@@ -75,7 +76,7 @@ This will:
 ## Authors
 **Zhehao Yi** - *Algorithm Design, Implementation & Writing*  
 **Rahul Bhadani** - *Project Guidance & Supervision*  
-If you have any question, please reach out to **Zhehao Yi** at zhehao.yi@uah.edu
+If you have any questions, please reach out to **Zhehao Yi** at zhehao.yi@uah.edu
 
 ## License
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
