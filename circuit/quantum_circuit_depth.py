@@ -9,4 +9,4 @@ def circuit_depth(num_qubits):
     :return: depth of the quantum circuit
     """
     # For this example, we define the circuit depth as ceil(n^2 * log(n)) the number of qubits
-    return int(np.ceil(num_qubits ** 2 * np.log(num_qubits)))
+    return int(np.ceil(num_qubits ** 2 * np.log(num_qubits))) 

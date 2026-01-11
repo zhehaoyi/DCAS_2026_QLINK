@@ -43,7 +43,7 @@ def main():
     iteration_mean = {m: [] for m in models} # record the mean iteration for each model
 
     for n in qubit_list:
-        print(f"\n{'='*20} Simulation n = {n} (include proxy qubit) {'='*20}")     
+        print(f"\n{'='*20} Simulation n = {n} (include messenger qubit) {'='*20}")     
         summary_file = os.path.join(summary_dir, f"n{n}_summary.txt")
         with open(summary_file, "w") as f: f.write(f"Results for {n} qubits experiment\n")
 
