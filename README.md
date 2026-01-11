@@ -11,7 +11,9 @@ The repository includes:
 
 The flowchatr as follow:
 
-[![Q-LINK Architecture](image/QLINK.png)](image/QLINK.pdf)
+![image](qlink_flowchat\QLINK.png)
+*Detailed architecture of the Q-LINK model. The circuit consists of a main variational circuit path acting on data qubits and a messenger qubit path that enables residual-like information exchange across layers. The interaction between the main path and the messenger path is illustrated schematically. Q-LINK includes a fixed with $R_{xx}$ gate parameters set to $\pi/4$, denoted as Q-LINK (Fixed) and an adaptive model with trainable $R_{xx}$ gate parameters denoted as Q-LINK (Adaptive)*
+
 ## Code Architecture
 ```bash
 .
